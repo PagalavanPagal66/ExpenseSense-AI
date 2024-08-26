@@ -1,0 +1,68 @@
+.main-div {
+    background: linear-gradient(to bottom, green, silver, white, silver, red);
+    /* background-color: blanchedalmond; */
+    background-attachment: fixed;
+    padding: 100px;
+    margin: 50px;
+    padding-top: 50px;
+    border-radius: 8px;
+    outline: 5px bold black;
+}
+
+button {
+    padding: 7px;
+    text-align: center;
+    width: 100px;
+    margin-left: 10px;
+    background-color: rgb(165, 166, 235);
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: rgb(87, 88, 134);
+    padding: 10px;
+}
+
+.order-list {
+    padding: 10px;
+    margin: 10px;
+    justify-content: center;
+    background-color: cadetblue;
+    border-radius: 10px;
+}
+
+.input {
+    padding: 7px;
+    width: 750px;
+    border-radius: 5px;
+}
+
+.doneclass {
+    width: 750px;
+    background-color: rgb(13, 207, 13);
+    padding: 10px;
+    margin: 10px;
+    height: 30px;
+    border-radius: 7px;
+}
+
+.doneclass:hover {
+    background-color: rgb(16, 140, 22);
+    padding: 15px;
+}
+
+.undoneclass {
+    width: 750px;
+    border-width: 10px;
+    border-color: black;
+    background-color: red;
+    padding: 10px;
+    margin: 10px;
+    height: 30px;
+    border-radius: 7px;
+}
+
+.undoneclass:hover {
+    background-color: rgb(176, 11, 11);
+    padding: 15px;
+}
