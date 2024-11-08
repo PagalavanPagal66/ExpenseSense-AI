@@ -69,7 +69,7 @@ const AddToExpenses = () => {
         onChange={setCategory}
         maxSelectedValues={1}
         getCreateLabel={(query) =>
-          `+ Create ${query[0].toUpperCase() + query.substring(1)}`
+          `+ Create ₹{query[0].toUpperCase() + query.substring(1)}`
         }
         onCreate={(query) => {
           const capQuery = query[0].toUpperCase() + query.substring(1);
