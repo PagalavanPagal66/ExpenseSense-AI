@@ -56,6 +56,5 @@ def get_str():
                 ind+=1
         res += "\n"
     print(res)
-
-get_str()
+    return res
 
