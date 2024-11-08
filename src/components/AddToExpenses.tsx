@@ -5,12 +5,19 @@ import AvailableCategoriesContext from "../store/AvailableCategoriesContext";
 import CategoriesContext from "../store/CategoriesContext";
 import HistoryContext from "../store/HistoryContext";
 import DeleteCatToolTip from "./DeleteCatToolTip";
+import api from '../api.js';
 
 type AvailableCategories = {
   label: string;
   value: string;
   isused: string;
 };
+
+type SendingData = {
+  value: string,
+  label: string,
+  category: string[]
+}
 
 const AddToExpenses = () => {
   const { addHistoryElement } = useContext(HistoryContext);
@@ -24,6 +31,9 @@ const AddToExpenses = () => {
   const [category, setCategory] = useState<string[]>([""]);
   const navigate = useNavigate();
 
+  const sendToPython = async (data : SendingData) => {
+      await api.post('/transactions',data);
+  }
   return (
     <div>
       <TextInput
@@ -112,6 +122,9 @@ const AddToExpenses = () => {
                   }
                   return c;
                 });
+              });
+              sendToPython({
+
               });
               // navigate back to the home page
               navigate("/");
