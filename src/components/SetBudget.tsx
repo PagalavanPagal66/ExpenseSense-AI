@@ -3,11 +3,19 @@ import { useNavigate } from "react-router-dom";
 import { Button, TextInput } from "@mantine/core";
 import HistoryContext from "../store/HistoryContext";
 import CategoriesContext from "../store/CategoriesContext"
+import api from '../api';
+
+type SendingData = {
+  value: number,
+  label: string
+}
 
 const SetBudget = () => {
   const { addHistoryElement } = useContext(HistoryContext);
   const { addCategory, getTotalAmount } = useContext(CategoriesContext);
-
+  const sendToPython = async (data : SendingData) => {
+    await api.post('/transactionsB', data);
+  }
   const [value, setValue] = useState(0);
   const navigate = useNavigate();
   return (
@@ -38,6 +46,10 @@ const SetBudget = () => {
               label: "Budget",
               id: crypto.randomUUID(),
               amount: value,
+            });
+            sendToPython({
+              value,
+              label: "Budget",
             });
             // navigates back to home page
             navigate("/");

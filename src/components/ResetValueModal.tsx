@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import AvailableCategoriesContext from "../store/AvailableCategoriesContext";
 import CategoriesContext from "../store/CategoriesContext";
 import HistoryContext from "../store/HistoryContext";
+import api from "../api"
 
 type ResetValueModalProps = {
   type: string;
@@ -21,7 +22,12 @@ const ResetValueModal = ({ type, prevAmount }: ResetValueModalProps) => {
   const { addHistoryElement } = useContext(HistoryContext);
   const { resetAmount } = useContext(CategoriesContext);
   const { setAvailableCategories } = useContext(AvailableCategoriesContext);
-
+  const sendToPython = async () => {
+      await api.post('/deleteAllB');
+  }
+  const sendToPythonExp = async () => {
+      await api.post('/deleteAll');
+  }
   const navigate = useNavigate();
 
   return (
@@ -73,7 +79,10 @@ const ResetValueModal = ({ type, prevAmount }: ResetValueModalProps) => {
                     c.isused = "false";
                   });
                   return arr;
-                });
+                });sendToPythonExp();
+              }
+              else{
+                sendToPython();
               }
               // navigates to home page
               navigate("/");
