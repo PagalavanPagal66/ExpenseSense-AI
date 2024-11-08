@@ -30,7 +30,7 @@ const ResetValueModal = ({ type, prevAmount }: ResetValueModalProps) => {
         opened={opened}
         onClose={() => setOpened(false)}
         centered
-        title={`Are you sure you want to reset your ${type.toLowerCase()} to 0?`}
+        title={`Are you sure you want to reset your ${type.toLowerCase()} to 0 ₹?`}
       >
         <Text
           mt={-17}
