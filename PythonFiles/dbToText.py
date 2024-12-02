@@ -1,5 +1,6 @@
 import sqlite3
 from pydantic.v1 import BaseModel
+import DatabaseConnection as dbc
 
 def run_sqlite_query():
     """Execute a SQLite query and fetch the results.
@@ -36,6 +37,32 @@ def describe_tables(table_name):
 def get_str():
     tables = list_tables()
     #print(tables)
+    # budget = dbc.get_all_bud()
+    # #print("All budget : ",budget)
+    # expense = dbc.get_all_exp()
+    # #print("All expense : ",expense)
+    # budget_str = ""
+    # it = 1
+    # for iter in budget:
+    #     budget_str += "\nBudget No : "+str(it)+" \n "
+    #     budget_str += "Type of budget : "
+    #     budget_str += iter[0]
+    #     budget_str += "\nAmount of budget : "
+    #     budget_str += iter[1]
+    #     it += 1
+    # it = 1
+    # exp_str = ""
+    # for iter in expense:
+    #     exp_str += "Expense No : "+str(it)
+    #     exp_str += "\n Type of expense : "
+    #     exp_str += iter[0]
+    #     exp_str += "\n Amount of budget : "
+    #     exp_str += iter[1]
+    #     exp_str += "\n categories of budget : "
+    #     exp_str += iter[2]
+    #     it += 1
+    # print(budget_str+ " ------------- " + exp_str)
+    # return budget_str + exp_str
     res = ""
     for iter in tables:
         #print(iter[0])

@@ -27,6 +27,7 @@ const ResetValueModal = ({ type, prevAmount }: ResetValueModalProps) => {
   }
   const sendToPythonExp = async () => {
       await api.post('/deleteAll');
+      console.log("sent");
   }
   const navigate = useNavigate();
 
@@ -79,7 +80,8 @@ const ResetValueModal = ({ type, prevAmount }: ResetValueModalProps) => {
                     c.isused = "false";
                   });
                   return arr;
-                });sendToPythonExp();
+                });
+                sendToPythonExp();
               }
               else{
                 sendToPython();
