@@ -2,7 +2,7 @@ import sqlite3
 from Support import Transaction,TransactionB
 
 def create_exp_table():
-    conn = sqlite3.connect(r'C:\Project\ExpenseSense-AI\PythonFiles\Database\Database.db')
+    conn = sqlite3.connect(r'Database/Database.db')
     c = conn.cursor()
     c.execute('CREATE TABLE IF NOT EXISTS Expenses (label TEXT, amount TEXT, tags TEXT)')
     conn.commit()
@@ -10,7 +10,7 @@ def create_exp_table():
     return
 
 def add_exp_data(transaction : Transaction):
-    conn = sqlite3.connect(r'C:\Project\ExpenseSense-AI\PythonFiles\Database\Database.db')
+    conn = sqlite3.connect(r'Database/Database.db')
     c = conn.cursor()
     label : str = transaction.label
     amount : int = transaction.value
@@ -24,14 +24,14 @@ def add_exp_data(transaction : Transaction):
     c.close()
 
 def delete_all_exp():
-    conn = sqlite3.connect(r'C:\Project\ExpenseSense-AI\PythonFiles\Database\Database.db')
+    conn = sqlite3.connect(r'Database/Database.db')
     c = conn.cursor()
     c.execute("DELETE FROM Expenses")
     conn.commit()
     c.close()
 
 def get_all_exp():
-    conn = sqlite3.connect(r'C:\Project\ExpenseSense-AI\PythonFiles\Database\Database.db')
+    conn = sqlite3.connect(r'Database/Database.db')
     c = conn.cursor()
     c.execute("SELECT * FROM Expenses")
     li = c.fetchall()
@@ -40,7 +40,7 @@ def get_all_exp():
     return li
 
 def create_bud_table():
-    conn = sqlite3.connect(r'C:\Project\ExpenseSense-AI\PythonFiles\Database\Database.db')
+    conn = sqlite3.connect(r'Database/Database.db')
     c = conn.cursor()
     c.execute('CREATE TABLE IF NOT EXISTS Budget (label TEXT, amount TEXT)')
     conn.commit()
@@ -48,7 +48,7 @@ def create_bud_table():
     return
 
 def add_bud_data(transaction : TransactionB):
-    conn = sqlite3.connect(r'C:\Project\ExpenseSense-AI\PythonFiles\Database\Database.db')
+    conn = sqlite3.connect(r'Database/Database.db')
     c = conn.cursor()
     label : str = transaction.label
     amount : int = transaction.value
@@ -58,14 +58,14 @@ def add_bud_data(transaction : TransactionB):
     c.close()
 
 def delete_all_bud():
-    conn = sqlite3.connect(r'C:\Project\ExpenseSense-AI\PythonFiles\Database\Database.db')
+    conn = sqlite3.connect(r'Database/Database.db')
     c = conn.cursor()
     c.execute("DELETE FROM Budget")
     conn.commit()
     c.close()
 
 def get_all_bud():
-    conn = sqlite3.connect(r'C:\Project\ExpenseSense-AI\PythonFiles\Database\Database.db')
+    conn = sqlite3.connect(r'Database/Database.db')
     c = conn.cursor()
     c.execute("SELECT * FROM Budget")
     li = c.fetchall()
