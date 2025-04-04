@@ -4,7 +4,7 @@ import uvicorn
 from Support import Transaction,TransactionB
 import DatabaseConnection as db
 from typing import List
-
+import BlockChain
 app = FastAPI()
 
 origins = [
@@ -35,18 +35,17 @@ async def get_func(transaction : Transaction):
 async def post_func(transaction : Transaction):
     print(transaction)
     db.add_exp_data(transaction)
+    my_chain.add_block(transaction)
     data.append(transaction)
     return transaction
 
 @app.get("/return")
 def get_ret():
-    db.get_all_exp()
-    return data
+    return db.get_all_exp()
 
 @app.post("/return")
 def post_ret():
-    db.get_all_exp()
-    return data
+    return db.get_all_exp()
 
 @app.post("/deleteAll")
 def post_del():
@@ -70,19 +69,18 @@ async def get_func(transaction : TransactionB):
 @app.post("/transactionsB")
 async def post_func(transaction : TransactionB):
     print(transaction)
+    my_chain.add_block(transaction)
     db.add_bud_data(transaction)
     data.append(transaction)
     return transaction
 
 @app.get("/returnB")
 def get_ret():
-    db.get_all_bud()
-    return data
+    return db.get_all_bud()
 
 @app.post("/returnB")
 def post_retB():
-    db.get_all_bud()
-    return data
+    return db.get_all_bud()
 
 @app.post("/deleteAllB")
 def post_delB():
@@ -96,8 +94,10 @@ def get_delB():
     db.delete_all_bud()
     return data
 
+my_chain = BlockChain.Blockchain()
 
 if __name__ == '__main__':
     db.create_exp_table()
     db.create_bud_table()
+
     uvicorn.run(app, host='localhost', port=8001)

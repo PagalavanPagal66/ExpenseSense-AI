@@ -37,7 +37,7 @@ def get_all_exp():
     li = c.fetchall()
     c.close()
     print(li)
-    return li
+    return {"data" : li}
 
 def create_bud_table():
     conn = sqlite3.connect(r'Database/Database.db')
@@ -71,4 +71,4 @@ def get_all_bud():
     li = c.fetchall()
     print(li)
     c.close()
-    return li
+    return {"data" : li}

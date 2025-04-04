@@ -11,13 +11,14 @@ def run_sqlite_query():
     Returns:
         A list of tuples containing the query results or an error message.
     """
-    with sqlite3.connect(r"C:\Project\ExpenseSense-AI\PythonFiles\Database\Database.db") as conn:
-        cursor = conn.cursor()
-        try:
-            cursor.execute("SELECT name FROM sqlite_master WHERE type='table';")
-            return cursor.fetchall()
-        except sqlite3.OperationalError as err:
-            return f"The following error occurred: {str(err)}"
+    return ["Expenses","Budget"]
+    conn = sqlite3.connect(r'Database/Database.db')
+    cursor = conn.cursor()
+    try:
+        cursor.execute("SELECT name FROM sqlite_master WHERE type='table';")
+        return cursor.fetchall()
+    except sqlite3.OperationalError as err:
+        return f"The following error occurred: {str(err)}"
 
 class RunQueryArgsSchema(BaseModel):
     query: str
@@ -26,17 +27,18 @@ def list_tables():
     rows = run_sqlite_query()
     return rows
 
-
+print(list_tables())
 def describe_tables(table_name):
-    with sqlite3.connect(r"C:\Project\ExpenseSense-AI\PythonFiles\Database\Database.db") as conn:
+    with sqlite3.connect(r"Database\Database.db") as conn:
         cursor = conn.cursor()
         cursor.execute("SELECT * FROM "+table_name+";")
         names = list(map(lambda x: x[0], cursor.description))
+        print(names)
         return [names,cursor.fetchall()]
 
 def get_str():
     tables = list_tables()
-    #print(tables)
+    print(tables)
     # budget = dbc.get_all_bud()
     # #print("All budget : ",budget)
     # expense = dbc.get_all_exp()
@@ -66,9 +68,9 @@ def get_str():
     res = ""
     for iter in tables:
         #print(iter[0])
-        res += "TABLE NAME : " + iter[0]
+        res += "TABLE NAME : " + iter
         res += "\n TABLE CONTENT : \n"
-        val = describe_tables(iter[0])
+        val = describe_tables(iter)
         ref = val[0]
         rows = val[1:]
         ctr=0
@@ -83,5 +85,8 @@ def get_str():
                 ind+=1
         res += "\n"
     print(res)
+    if len(res):
+        return res
+    res = "No database entries found"
+    print(res)
     return res
-
