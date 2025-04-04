@@ -24,7 +24,7 @@ def format_budget_data(budget_data):
     if not records:
         return "No budget data available."
 
-    summary = "Here is the summary of my financial budget records:\n"
+    summary = "Here is the summary of my financial budget records :\n"
 
     category_totals = {}
 
@@ -36,10 +36,10 @@ def format_budget_data(budget_data):
 
         summary += f"- ₹{amount} recorded under '{category}' category.\n"
 
-    summary += "\nTotal amount by category:\n"
+    summary += "\nHere is the summary of my financial budget records  by category:\n"
     for category, total in category_totals.items():
         summary += f"- {category}: ₹{total}\n"
-
+    print(summary)
     return summary
 
 
@@ -70,7 +70,7 @@ def format_expense_data(expense_data):
 
         summary += f"- Spent ₹{amount} on {item} under '{category}' category.\n"
 
-    summary += "\nTotal expenditure by category:\n"
+    summary += "\nHere is the summary of my expenses by category:\n"
     for category, total in category_totals.items():
         summary += f"- {category}: ₹{total}\n"
 
@@ -98,13 +98,15 @@ def get_ollama_response(question):
     print(budgetJson)
     # Define the payload (your input prompt)
     payload = {
-        "model": "llama3.2:latest",
+        "model": "qwq",
         "messages": [
             {"role": "user",
              "content":
-             format_expense_data(expenseJson) + format_budget_data(budgetJson) + " : This is the database string , from which you have to analyse and answer. "
+             "the following categories will be added to my bank balance " + format_budget_data(budgetJson) +
+             "the following categories will be deducted from my bank balance " + format_expense_data(expenseJson) +
+             " : This is the database string , from which you have to analyse and answer. "
              + " Be precision with the numericals and say only 1 line of answer. no other answers are allowed. If there is nothing, return 0. "
-             + question + ".This is the question from the user , which you need to answer by analysing the table and in user understandable format, don't reveal any technical things, just say answer in numbers. Dont' say too much, just say accurate answers in numbers."
+             + question + ".This is the question from the user be more precise, dont share your think section, which you need to answer by analysing the table and in user understandable format, don't reveal any technical things, just say answer in numbers. Dont' say too much, just say accurate answers in numbers."
             }
         ]
     }
