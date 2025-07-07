@@ -42,7 +42,11 @@ export function AvailableCategoriesContextProvider({
         value: "Groceries",
         isused: "false",
       },
-      { label: "Uncategorized", value: "Uncategorized", isused: "false" },
+      { 
+        label: "Uncategorized", 
+        value: "Uncategorized", 
+        isused: "false" 
+      },
     ],
   });
 
